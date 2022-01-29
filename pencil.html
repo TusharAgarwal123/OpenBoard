@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas></canvas>
+</body>
+<script>
+    let canvasBoard = document.querySelector("canvas");
+    let tool = canvasBoard.getContext("2d");
+    let body = document.querySelector("body");
+    canvasBoard.height = window.innerHeight;
+    canvasBoard.width = window.innerWidth;
+    let boardTop = canvasBoard.getBoundingClientRect().top;
+    // canavas board -> left  point kitna aage  hai 
+    let boardLeft = canvasBoard.getBoundingClientRect().left;
+    let iX, iY, fX, fY;
+    let drawingMode = false;
+    body.addEventListener("mousedown", function (e) {
+        drawingMode = true;
+        tool.beginPath();
+        iX = e.clientX - boardLeft
+        iY = e.clientY - boardTop
+        tool.moveTo(iX, iY);
+    })
+    body.addEventListener("mouseup", function (e) {
+        drawingMode = false;
+    })
+    body.addEventListener("mousemove", function (e) {
+        if (drawingMode == false)
+            return;
+        fX = e.clientX - boardLeft;
+        fY = e.clientY - boardTop;
+        tool.lineTo(fX, fY);
+        tool.stroke();
+        iX = fX;
+        iY = fY;
+    })
+
+</script>
+</html>

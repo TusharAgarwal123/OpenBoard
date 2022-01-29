@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky</title>
+</head>
+<style>
+
+   .close{
+       height: 15px;
+       width: 15px;
+       border-radius: 50%;
+       background-color: lightcoral;
+       margin-right: 5px;
+   }
+   .minimize{
+       height: 15px;
+       width: 15px;
+       border-radius: 50%;
+       background-color: lightgreen;
+       margin-right: 5px;
+   }
+   .sticky{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: 175px;
+    height: 175px;
+   }
+
+   .navbar{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    height: 15%;  /* 15% of it's parent height, parent height is 175px */
+    justify-content: flex-end;
+    align-items: center;
+   }
+
+   .textarea{
+       outline: none;
+       border: none;
+       height: 85%;
+       border-top: 2px solid gray;
+   }
+
+</style>
+<body>
+    <button>click</button>
+
+    <!-- <div class="sticky">
+        <div class="navbar">
+            <div class="close"></div>
+            <div class="minimize"></div>
+        </div>
+        <textarea class="textarea"></textarea>
+    </div> -->
+
+    <script>
+        let button=document.querySelector("button");
+        let body=document.querySelector("body");
+        button.addEventListener("click",function(e){
+            let sticky=document.createElement("div");   //it will create one div.
+            sticky.setAttribute("class","sticky");
+            sticky.innerHTML=`<div class="navbar">
+            <div class="close"></div>
+            <div class="minimize"></div>
+        </div>
+        <textarea class="textarea"></textarea>`;
+        
+        body.appendChild(sticky);
+        let close=sticky.querySelector(".close");
+        let mini=sticky.querySelector(".minimize");
+        let text=sticky.querySelector("textarea");
+        let isClose=false;
+        mini.addEventListener("click",function(e){
+            if(isClose==false){
+                text.style.display="none";
+            }else{
+                text.style.display="block";
+            }
+
+            isClose=!isClose;
+           
+        })
+
+        close.addEventListener("click",function(){
+            sticky.style.display="none";
+        })
+            
+        })
+      
+       
+
+    </script>
+</body>
+</html>

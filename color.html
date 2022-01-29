@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+    /* it applies on each element of this page  
+    *{
+        border: 1px solid red;
+    }
+    */
+
+    /* div{
+        border: 1px solid green;
+        background-color: lightpink;
+    } */
+    .outer{
+        border: 3px solid purple;
+        width: 200px;
+        height: 50px;
+
+         /* it will make content of this block to one after another */
+        display: flex;
+        /* horizontal align */
+        justify-content: space-evenly;
+         /* vertical align */
+        align-items: center;
+        
+    }
+    .red{
+        background-color: lightpink;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+    }
+    .green{
+        background-color: lightgreen;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+    .blue{
+        background-color: lightblue;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+    /* body{
+        border: 1px solid blue;
+    }
+    html{
+        border: 1px solid gray;
+    } */
+
+    .color-area{
+        border: 1px solid gray;
+        height: 100px;
+        width: 100px;
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+
+    </style>
+</head>
+<body>
+    <!--element heigth is equal to thier contents-->
+    <!--div take 100% width-->
+    <div class="outer">
+        <div class="red">Red</div>
+        <div class="green">Green</div>
+        <div class="blue">Blue</div>
+    </div>
+
+    <div class="color-area"></div>
+</body>
+
+ <script>
+
+     let colorArea=document.querySelector(".color-area");
+    // colorArea.style.backgroundColor="red";
+
+
+     let redArea=document.querySelector(".red");
+     let greenArea=document.querySelector(".green");
+     let blueArea=document.querySelector(".blue");
+
+     redArea.addEventListener("click",function(e){
+         //changing color using js.
+         colorArea.style.backgroundColor="lightpink";
+     })
+     greenArea.addEventListener("click",function(e){
+        colorArea.style.backgroundColor="lightgreen";
+     })
+     blueArea.addEventListener("click",function(e){
+        colorArea.style.backgroundColor="lightblue";
+     })
+
+     
+
+ </script>
+
+</html>

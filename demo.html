@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBoard</title>
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        .fas {
+            font-size: 2rem;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+    </style>
+    <!--link for fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <i class="fas fa-square"></i>
+    <i class="fas fa-grip-lines-vertical"></i>
+    <canvas></canvas>
+</body>
+<script>
+
+    let canvasBoard = document.querySelector("canvas");
+    let body = document.querySelector("body");
+    let rectTool = document.querySelector(".fa-square");
+    let lineTool = document.querySelector(".fa-grip-lines-vertical");
+    let cTool = "rectTool";
+
+    canvasBoard.height = window.innerHeight;
+    canvasBoard.width = window.innerWidth;
+
+    let tool = canvasBoard.getContext("2d");
+
+    tool.fillStyle = "red";
+    tool.fillRect(0, 0, 200, 200);
+
+    tool.strokeStyle = "green"
+    tool.strokeRect(50, 50, 200, 200);
+
+    let ix, iy, fx, fy;
+
+    rectTool.addEventListener("click", function () {
+        cTool = "rectTool";
+    })
+
+    lineTool.addEventListener("click", function () {
+        cTool = "lineTool";
+    })
+
+    let boardTop = canvasBoard.getBoundingClientRect().top;
+    let boardLeft = canvasBoard.getBoundingClientRect().left;
+
+
+
+    body.addEventListener("mousedown", function (e) {
+        ix = e.clientX + boardLeft;
+        iy = e.clientY - boardTop;
+    })
+
+
+    body.addEventListener("mouseup", function (e) {
+        fx = e.clientX + boardLeft;
+        fy = e.clientY - boardTop;
+
+        let width = fx - ix;
+        let height = fy - iy;
+
+        if (cTool == "rectTool") {
+            tool.strokeRect(ix, iy, width, height);
+        } else {
+            tool.beginPath();
+            tool.moveTo(ix, iy);
+            tool.lineTo(fx, fy);
+            tool.stroke();
+        }
+
+    })
+
+</script>
+
+</html>
